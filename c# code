@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+class Student
+{
+    public string Name;
+    public int[] Marks;
+    public int TotalMarks;
+    public double AverageMarks;
+
+    public Student(string name, int[] marks)
+    {
+        Name = name;
+        Marks = marks;
+        CalculateTotalMarks();
+        CalculateAverageMarks();
+    }
+
+    public void CalculateTotalMarks()
+    {
+        int total = 0;
+        foreach (int mark in Marks)
+        {
+            total += mark;
+        }
+        TotalMarks = total;
+    }
+
+    public void CalculateAverageMarks()
+    {
+        double average = 0;
+        if (Marks.Length > 0)
+        {
+            int total = TotalMarks;
+            average = (double)total / Marks.Length;
+        }
+        AverageMarks = average;
+    }
+}
+namespace arrayobject1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+   
+            Student[] students = new Student[3];
+
+          
+            students[0] = new Student("A", new int[] { 90, 80, 85 });
+            students[1] = new Student("B", new int[] { 75, 85, 80 });
+            students[2] = new Student("C", new int[] { 80, 70, 90 });
+
+         
+            foreach (Student student in students)
+            {
+                Console.WriteLine("Name: " + student.Name);
+                Console.WriteLine("Marks: " + string.Join(", ", student.Marks));
+                Console.WriteLine("Total Marks: " + student.TotalMarks);
+                Console.WriteLine("Average Marks: " + student.AverageMarks);
+                Console.ReadLine();
+                Console.WriteLine();
+            }
+        }
+    }
+}
